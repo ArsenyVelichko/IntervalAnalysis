@@ -1,0 +1,59 @@
+\section{Постановка задачи}
+\subsection{Выяснение радиуса элементов матрицы, при котором она становится особенной}
+\subsubsection{Линейная и полиномиальная регрессия}
+Задача регрессии может быть записана в следующем виде
+\begin{equation}
+    \textbf{y}=\textbf{X}\beta
+\end{equation}
+Пусть $\textbf{X}$ - интервальная матрица и
+\begin{equation}
+\mathrm{mid}(\textbf{X})=
+\begin{pmatrix}
+1 & 1 \\
+1.1 & 1 
+\end{pmatrix}
+\end{equation}
+Необходимо рассмотреть матрицу вида
+\begin{equation}
+\textbf{X}=
+\begin{pmatrix}
+[1-\varepsilon, 1+\varepsilon] & 1 \\
+[1.1-\varepsilon, 1.1+\varepsilon] & 1 
+\end{pmatrix}
+\end{equation}
+и определить при каком радиусе она содержит особенную матрицу.\\\\
+\subsubsection{Задачи томограции}
+При решении задач томографии, имеем уравнения типа
+\begin{equation}
+    \textbf{A}x=\textbf{b}
+\end{equation}
+Необходимо рассмотреть интервальную матрицу $2\times2$
+\begin{equation}
+\textbf{A}=
+\begin{pmatrix}
+[1-\varepsilon, 1+\varepsilon] & [1-\varepsilon, 1+\varepsilon] \\
+[1.1-\varepsilon, 1.1+\varepsilon] & [1.1-\varepsilon, 1.1+\varepsilon] 
+\end{pmatrix}
+\end{equation}
+и определить при каком радиусе она содержит особенную матрицу.
+\subsection{Глобальная оптимизация}
+При помощи простейшего метода глобальной оптимизации найти точки глобального минимума для функции МакКормика 
+\begin{equation}\label{McCormick}
+\begin{split}
+    f(x,y)=\sin(x+y)+(x-y)^2-1.5x+2.5y+1, 
+    \quad    &-1.5\leq x \leq 4\\
+        &-3\leq y \leq 4
+\end{split}
+\end{equation}
+\\
+И функции Химмельблау
+\begin{equation}\label{Himmelblau}
+    f(x, y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2, \quad -5 \leq x,y \leq 5
+\end{equation}
+\\
+Также необходимо привести иллюстрации:
+\begin{itemize}
+    \item положения брусов из рабочего списка алгоритма и положения их центров
+    \item графики радиусов рабочих брусов в логарифмическом масштабе
+    \item расстояния до точки минимума в логарифмических координатах
+\end{itemize}

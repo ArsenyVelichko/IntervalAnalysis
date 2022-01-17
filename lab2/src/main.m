@@ -78,7 +78,7 @@ c = infsup(30, 31);
 k = infsup(0.8, 1);
 
 J = @(X) [a, b; 1 / X(2), -X(1) / (X(2)^2)];
-x = [infsup(5, 7); infsup(5, 7)];
+x = [infsup(5, 8); infsup(5, 8)];
 lambda = @(X) inv(J(mid(x)));
 C = @(X) eye(2) - lambda(X) * J(X);
 
@@ -87,7 +87,7 @@ max(eig(mag(C(x))))
 F = @(X) [a * X(1) + b * X(2) - c;X(1)/ X(2) - k];
 K = @(X) mid(X) - lambda(X) * F(mid(X)) - C(X) * (X - mid(X));
 
-n = 200;
+n = 150;
 fig = figure;
 WorkList = x;
 for i = 1:n-1

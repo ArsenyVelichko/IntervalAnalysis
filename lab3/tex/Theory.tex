@@ -1,0 +1,45 @@
+\section{Теория}
+\subsection{Распознающий функционал}
+Разпознающим функционалом называется функция
+\begin{equation}
+    \mathrm{Tol}(x)=\mathrm{Tol}(x,\mathbf{A},\mathbf{b})=\min_{1\leq i\leq m}\left\{\mathrm{rad}(\mathbf{b}_i)-\left|\mathrm{mid}(\mathbf{b}_i)-\sum_{j=1}^n \mathbf{a}_{ij}x_j\right|\right\}
+\end{equation}
+Пусть
+\begin{equation}
+T=\max_{x\in \mathbb{R}^n} \;\mathrm{Tol}(x, \mathbf{A},\mathbf{b})
+\end{equation}
+и это значение достигается распознающим функционалом в некоторой точке $\tau\in \mathbb{R}^n$. Тогда
+\begin{itemize}
+    \item если $T\geq0$, то $\tau\in\Xi_{\mathrm{tol}}(\textbf{A},\textbf{b})\neq  \emptyset$, т.е. линейная задача о допусках для интервальной линейной системы $\textbf{A}x=\textbf{b}$ совместна и точка $\tau$ лежит в допусковом множестве решений.
+    \item если $T>0$ то $\tau\in int \;\Xi_{\mathrm{tol}}(\textbf{A},\textbf{b})\neq  \emptyset$, и принадлежность $\tau$ допусковому множеству решений устойчива к малым возмущениям данных - матрицы и правой части.
+    \item если $T<0$ то $\Xi_{\mathrm{tol}}(\textbf{A},\textbf{b})=\emptyset$,  т.е. линейная задача о допусках для интервальной линейной системы $\textbf{A}x=\textbf{b}$ несовместна.
+\end{itemize}
+\subsection{Достижение разрешимости ИСЛАУ путём изменения правой части}
+Если линейная задача о допусках с матрицей $\textbf{A}$ и вектором правой части $\textbf{b}$ первоначально не имела решений, то новая задача с той же матрицей  $\textbf{A}$ и уширенным вектором
+\begin{equation}
+    (\textbf{b}_i+K\cdot v_i\cdot [-1,1])_{i=1}^m
+\end{equation}
+в правой части становится разрешимой при $K\geq |T_v|$, где
+\begin{equation}
+    T_v=\min_{1\leq i\leq m}\left\{v_i^{-1}\left(\mathrm{rad}(\mathbf{b}_i)-\left|\mathrm{mid}(\mathbf{b}_i)-\sum_{j=1}^n \mathbf{a}_{ij}x_j\right|\right)\right\}
+\end{equation}
+\subsection{Достижение разрешимости ИСЛАУ путём изменения матрицы}
+Линейная задача первоначально не имеет решение, и известно, что
+\begin{equation}
+\tau=\argmax_{x\in \mathbb{R}^n} \; \mathrm{Tol}(x,\mathbf{A},\mathbf{b})
+\end{equation}
+Выберем интервальную матрицу $\mathbf{E}^{m\times n}=(\mathbf{e}_{ij})$ с уравновешенными интервальными элементами $\mathbf{e}_{ij}=[-e_{ij}, e_{ij}]$ так, что
+\begin{equation}
+    \sum_{j=1}^n e_{ij}\tau=K, \quad i=1,2,...,m
+\end{equation}
+где $K>0$ и $\mathrm{rad(\mathbf{a}_{ij}})\geq e_{ij} \geq 0 \;\; \forall i,j$.
+Если $K\geq |T|$, то тогда линейная задача о допусках с матрицей $\mathbf{A}\ominus\mathbf{E}=([\underline{\mathbf{a}}_{ij}-\underline{\mathbf{e}}_{ij},\overline{\mathbf{a}}_{ij}+\overline{\mathbf{e}}_{ij}])$ и правой частью $\textbf{b}$ становится разрешимой.
+\subsection{Оценки вариабельности решения}
+Абсолютной вариабельностью оценки называется величина
+\begin{equation}
+    \mathrm{ive}(\mathbf{A},\mathbf{b})=\min\limits_{A\in\mathbf{A}}\mathrm{cond}\:A\cdot||\argmax\:\mathrm{Tol}(x)||\frac{\max\limits_{x\in\mathbb{R}^n}\mathrm{Tol}(x)}{||\mathbf{b}||}
+\end{equation}
+Относительной вариабельностью оценки называется величина
+\begin{equation}
+    \mathrm{rve}(\mathbf{A},\mathbf{b})=\min\limits_{A\in\mathbf{A}}\mathrm{cond}\:A\cdot\max\limits_{x\in\mathbb{R}^n}\mathrm{Tol}(x)
+\end{equation}

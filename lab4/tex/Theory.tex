@@ -1,0 +1,39 @@
+\section{Теория}
+\subsection{Теорема Зюзина}
+Пусть в интервальной линейной системе уравнений 
+\begin{equation}
+\mathbf{C}x = \mathbf{d}    
+\end{equation}
+с $\mathbf{C}\in \mathbb{KR}^{n\times n}$ и $\mathbf{d}\in\mathbb{KR}^{n} $ правильная проекция матрицы $\mathbf{C}$ имеет диагональное преобладание. Тогда формальное решение существует и единственно.\\
+\\
+\textbf{Итерационная схема}\\
+Пусть\\
+$\mathbf{D} -$ диагональная матрица $\mathrm{diag}\{\mathbf{c_{11}},\mathbf{c_{22}},...,\mathbf{c}_{nn}\}$,\\
+$\mathbf{E} -$ матрица, полученная из $\mathbf{C}$ занулением её диагональных элементов.\\
+Таким образом, $\mathbf{C}=\mathbf{D}+\mathbf{E}$, а формальные решения исходной системы очевидно совпадают с формальными решениями системы
+\begin{equation}
+    \mathbf{D}x+\mathbf{E}x=\mathbf{d}
+\end{equation}
+которая, в свою очередь равносильна
+\begin{equation}
+    \mathbf{D}x=\mathbf{d}\ominus\mathbf{E}x
+\end{equation}
+Взяв далее какой-нибудь вектор $\mathbf{x}^{(0)}$, мы можем организовать итерационный процесс
+\begin{equation}
+    \mathbf{x}^{(k+1)}\leftarrow\left(\mathrm{inv}\;\mathbf{D}\right)\left(\mathbf{d}\ominus\mathbf{E}\mathbf{x}^{(k)}\right), \quad k=0,1,2,...
+\end{equation}
+c $\left(\mathrm{inv}\;\mathbf{D}\right):=\mathrm{diag}\{\mathrm{inv}\;\mathbf{c_{11}},\mathrm{inv}\;\mathbf{c_{22}},...,\mathrm{inv}\;\mathbf{c}_{nn}\}$ и по теореме Шрёдера о неподвижной точке, он будет сходиться к единственной неподвижной точке отображения
+\begin{equation}
+    \mathbf{x}\mapsto\left(\mathrm{inv}\;\mathbf{D}\right)\left(\mathbf{d}\ominus\mathbf{E}\mathbf{x}\right)
+\end{equation}
+в силу диагонального преобладания в $\mathbf{C}$.
+\subsection{Субдифференциальный метод Ньютона}
+Пусть
+\begin{equation}
+    \mathcal{F}(y)=\mathrm{sti}\:(\mathbf{C}\;\mathrm{sti}^{-1}\:(y))-y+\mathrm{sti}\:(\mathbf{d)}
+\end{equation}
+Тогда итерационная схема метода выглядит следующим образом
+\begin{equation}
+    \mathbf{x}^{(k+1)}\leftarrow x^{(k)}-\tau\left(D^{(k)}\right)^{-1}\mathcal{F}(x^{(k)})
+\end{equation}
+где $\tau\in[0,1]$, а $D^{(k)}$ - некоторый субградиент отображения $\mathcal{F}$ в точке $x^{(k)}$.

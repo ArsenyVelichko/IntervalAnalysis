@@ -22,7 +22,8 @@ testData(2).Minimum = [3.0, 2.0;
 
 for data = testData
     [Z, WorkList] = globopt0(data.InitialBox, data.Function);
-    display([Z, mid(WorkList(end).Box)])
+    Z
+    WorkList(end).Box
 
     ItNum = size(WorkList, 2);
     RadList = zeros(ItNum);

@@ -1,0 +1,22 @@
+\section{Теория}
+\subsection{Определения}
+\begin{itemize}
+    \item Середина матрицы $\mathrm{mid}(\textbf{A})=\{A\;|\;a_{ij}=\mathrm{mid}(\textbf{a}_{ij})\}$
+    \item Радиус матрицы $\mathrm{rad}(\textbf{A})=\{A\;|\;a_{ij}=\mathrm{rad}(\textbf{a}_{ij})\}$
+    \item Матрица $\textbf{A}\in \mathbb{IR}$ называется особенной, если $\exists A \in \textbf{A} : det(A)=0$.
+    \item Числа $\sigma_1...\sigma_k$, равные квадратным корням из собственных значений матрицы $AA^T$, называется cингулярными числами матрицы $A$.
+    \item Множество вершин интревальной матрицы\\ $\mathrm{vert}(\textbf{A})=\{A\in\mathbb{IR}^{m\times n} \;|\; A=(a_{ij}) \, a_{ij}\in\{\underline{\textbf{a}}_{ij}, \overline{\textbf{a}}_{ij}\}\}$
+\end{itemize}
+\subsection{Критерий Баумана}
+Интервальная матрица $\textbf{A}$ неособенна тогда и только тогда, когда 
+\begin{equation}
+    (\mathrm{det}(A'))*(\mathrm{det}(A''))>0 \quad \forall A',A''\in \mathrm{vert}(A)
+\end{equation}
+\subsection{Признак Румпа}
+Если для интервальной матрицы $\textbf{A}\in \mathbb{IR}^{m\times n}$ имеет место
+\begin{equation}
+    \sigma_{\mathrm{max}}(\mathrm{rad}(\textbf{A}))<\sigma_{\mathrm{min}}(\mathrm{mid}(\textbf{A}))
+\end{equation}
+Тогда $\textbf{A}$ неособенна.
+
+
