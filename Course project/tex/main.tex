@@ -1,0 +1,43 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{amsthm, amsmath, amssymb}
+
+
+\usepackage{xcolor}
+\usepackage[colorlinks = true,
+            linkcolor = black,
+            urlcolor  = black,
+            citecolor = black,
+            anchorcolor = black]{hyperref}
+            
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+\usepackage{float}
+
+\usepackage{caption}
+
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+
+\begin{document}
+
+\captionsetup{justification=centering}
+
+\input{Title}
+
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\input{Task}
+\input{Theory}
+\input{Realization}
+\input{Results}
+\input{Discussion}
+\input{Bibliography}
+
+\end{document}

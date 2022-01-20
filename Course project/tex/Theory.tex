@@ -1,0 +1,68 @@
+\section{Теория}
+\subsection{Естественное интервальное расширение}
+Интервальное расширение элементарного функционального выражения, которое получается в результате замены его аргументов на интервалы их изменения, а арифметических операций и элементарных функций на их интервальные аналоги и расширения называется \textit{естественным интервальным расширением}.
+\subsection{Оценка расстояния между функцией и её естественным интервальным расширением}
+Пусть $f:\mathbb{R}^n\rightarrow\mathbb{R}$ является липшицевым по форме на $\mathbf{X}\in\mathbb{IR}^n$.\\
+Пусть $\textbf{\textit{f}}_{\mathrm{nat}}$ - естественное интервальное расширение $f$.\\
+Пусть $f(\mathbf{x})=\{f(x)\;|\;x\in\mathbf{x}\}$, тогда имеет место оценка
+\begin{equation} \label{Estimate}
+    \mathrm{dist}(\textbf{\textit{f}}_{\mathrm{nat}},f(\mathbf{x}))\leq C||\mathrm{wid}(\mathbf{x})||
+\end{equation}
+для любого бруса $\mathbf{x}\subset\mathbf{X}$ и некоторой константы $C$.
+\subsection{Задача глобальной отпимизации}
+Пусть $f:\mathbf{X}\rightarrow\mathbb{R}$, где $\mathbf{X}\subseteq\mathbb{IR}^n$ - прямоугольный брус с гранями параллельными осям.\\
+Требуется найти величину $f^*\in\mathbb{R}$, такую что
+\begin{equation}
+    ||f^*-\inf_{x\in\mathbf{X}}f(x)||<\varepsilon
+\end{equation}
+для любого заранее заданного $\varepsilon>0$.
+\subsection{Интервальный метод отжига}
+Алгоритм схема интервального метода обжига:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l| }
+ \hline
+\multicolumn{1}{|c|}{Вход}\\
+     Брус $\mathbf{X}\in\mathbb{IR}^n$. Начальное $T_0$ и конечное $T_{\mathrm{fin}}$ значения <<температуры>>.\\
+     Интервальное расширение $\textbf{\textit{F}}:X\rightarrow\mathbb{IR}^n$.\\
+ \hline
+ \multicolumn{1}{|c|}{Выход}\\
+ Оценка $F^*$ глобального минимума функции $F$ на $\mathbf{X}$.\\
+ \hline
+ \multicolumn{1}{|c|}{Алгоритм}\\
+ Присваиваем $\mathbf{Y} \leftarrow \mathbf{X}$ и $T\leftarrow T_0$;\\
+ Назначаем целочисленную величину $N_T$ - \\<<кол-во испытаний на один температурный уровень>>;\\
+ Вычисляем $\textbf{\textit{F}}(\mathbf{Y})$ и инициализируем список $\mathcal{L}$ записью $\{(\mathbf{Y},\underline{\textbf{\textit{F}}(\mathbf{Y})})\}$;\\
+$\mathbf{DO\;WHILE}$ $(T>T_{\mathrm{fin}})$\\
+\qquad $\mathbf{DO\;FOR}$ $j=1$ $\mathbf{TO}$ $N_T$\\
+\qquad \qquad Случайно выбираем из $\mathcal{L}$ запись $\{(\mathbf{Z},\underline{\textbf{\textit{F}}(\mathbf{Z})})\}$ по правилу $\mathcal{S}(\mathbf{Y})$\\
+\qquad\qquad $\mathbf{DO}$ (с вероятностью $P_T(\mathbf{Y}, \mathbf{Z})$)\\
+\qquad\qquad\qquad Рассекаем $\mathbf{Z}$ по самой длинной компоненте пополам\\
+\qquad\qquad\qquad на брусы-потомки $\mathbf{Z}'$ и $\mathbf{Z}''$;\\
+\qquad\qquad\qquad Вычисляем $\textbf{\textit{F}}(\mathbf{Z'})$ и $\textbf{\textit{F}}(\mathbf{Z''})$;\\
+\qquad\qquad\qquad Удаляем запись $\{(\mathbf{Z},\underline{\textbf{\textit{F}}(\mathbf{Z})})\}$ из списка $\mathcal{L}$;\\
+\qquad\qquad\qquad Помещаем записи $\{(\mathbf{Z},\underline{\textbf{\textit{F}}(\mathbf{Z'})})\}$ и $\{(\mathbf{Z},\underline{\textbf{\textit{F}}(\mathbf{Z''})})\}$ в список $\mathcal{L}$;\\
+\qquad\qquad\qquad Обозначаем через $\{(\mathbf{Y},\underline{\textbf{\textit{F}}(\mathbf{Y})})\}$ ту из записей $\{(\mathbf{Z},\underline{\textbf{\textit{F}}(\mathbf{Z'})})\}$ \\
+\qquad\qquad\qquad и $\{(\mathbf{Z},\underline{\textbf{\textit{F}}(\mathbf{Z''})})\}$, которая имеет меньшее значение\\
+\qquad\qquad\qquad второго поля;\\
+\qquad\qquad $\mathbf{END\;DO}$\\
+\qquad $\mathbf{END\;DO}$\\
+\qquad Уменьшаем значение температуры $T\leftarrow\alpha T$;\\
+$\mathbf{END\;DO}$\\
+$F^*\leftarrow\underline{\textbf{\textit{F}}(\mathbf{Y})})$;\\\\
+\hline
+\end{tabular}
+\caption{Алгоритм интервального метода отжига}
+\label{SimAnnAlgo}
+\end{table}
+Вероятность дробления выбранного бруса $\mathbf{Z}$ задаётся формулой
+\begin{equation} \label{Probability}
+    P_T(\mathbf{Y},\mathbf{Z})=
+    \begin{cases}
+    1, & \text{если} \;\Delta\textbf{\textit{F}}< 0,\\
+   \exp(-\frac{\textbf{\textit{F}}}{kT}), & \text{если}\; \Delta\textbf{\textit{F}}\geq 0
+    \end{cases}
+\end{equation}
+где $\Delta\textbf{\textit{F}}=\textbf{\textit{F}}(\mathbf{Z})-\textbf{\textit{F}}(\mathbf{Y})$ - приращение оценки оптимума, обеспечиваемое новым брусом приближения.\\
+Правило $\mathcal{S}(\mathbf{Y})$ в алгоритме \eqref{SimAnnAlgo} - это случайный выбор бруса $\mathbf{Z}$ из рабочего списка. Оно зависит от ведущего бруса $\mathbf{Y}$ (а также ведущей оценки) и может быть организовано самым различным образом в зависимости от наличия априорной информации о целевой функции.
+\newpage
